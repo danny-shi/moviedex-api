@@ -27,19 +27,21 @@ app.get("/movie", function handleGetMovie(req, res) {
   //filter movie by genre
   if (req.query.genre) {
     response = response.filter((movie) => {
-      movie.genre.toLowerCase().includes(req.query.genre.toLowerCase());
+      return movie.genre.toLowerCase().includes(req.query.genre.toLowerCase());
     });
   }
   //filter movie by country
   if (req.query.country) {
     response = response.filter((movie) => {
-      movie.country.toLowerCase().includes(req.query.country.toLowerCase());
+      return movie.country
+        .toLowerCase()
+        .includes(req.query.country.toLowerCase());
     });
   }
   //filter movie by avg_vote
   if (req.query.avg_vote) {
     response = response.filter((movie) => {
-      Number(movie.avg_vote) >= Number(req.query.avg_vote);
+      return Number(movie.avg_vote) >= Number(req.query.avg_vote);
     });
   }
   res.json(response);
